@@ -1,0 +1,1 @@
+{"verdict":"pass","findings":[],"limitation":"Tests are exhaustive over the 6x6 known-state matrix (49 transitions); behavior for unknown/non-string inputs beyond the included checks is not fully exercised."}

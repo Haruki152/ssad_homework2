@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-10",
+  "recorded_at_utc": "2026-10-10T00:09:57.880499+00:00",
+  "method": "真实本地 SQLite/HTTP API 测试；编排 API 客户端仅离线模拟，未调用厂商服务。",
+  "checks": {
+    "v3-all-tests": {
+      "command": [
+        "C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests",
+        "-q",
+        "--rms-version",
+        "v3",
+        "-p",
+        "no:cacheprovider",
+        "--junitxml",
+        "artifacts/tests-v3.xml"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 88%]\n.........                                                                [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n81 passed, 1 warning in 11.32s\n",
+      "stderr": "",
+      "expected_exit_code": 0
+    },
+    "v2-api-tests": {
+      "command": [
+        "C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/test_contract.py",
+        "-q",
+        "--rms-version",
+        "v2",
+        "-p",
+        "no:cacheprovider",
+        "--junitxml",
+        "artifacts/tests-v2.xml"
+      ],
+      "exit_code": 0,
+      "stdout": ".................................................................        [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n65 passed, 1 warning in 10.84s\n",
+      "stderr": "",
+      "expected_exit_code": 0
+    },
+    "v1-startup-smoke": {
+      "command": [
+        "C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/test_contract.py",
+        "-q",
+        "--rms-version",
+        "v1",
+        "-k",
+        "contract_routes",
+        "-p",
+        "no:cacheprovider",
+        "--junitxml",
+        "artifacts/tests-v1-smoke.xml"
+      ],
+      "exit_code": 0,
+      "stdout": ".                                                                        [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n1 passed, 64 deselected, 1 warning in 1.29s\n",
+      "stderr": "",
+      "expected_exit_code": 0
+    },
+    "v1-static-gates": {
+      "command": [
+        "C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Scripts\\python.exe",
+        "tools/gates.py",
+        "v1"
+      ],
+      "exit_code": 1,
+      "stdout": "== v1 静态门禁 ==\n[FAIL] C-01: 多余=['acceptance', 'priority', 'rationale', 'source', 'stability']；缺少=[]\n[FAIL] C-03: 缺少准确的合法流转表\n[FAIL] C-02/C-04: 属性及传播调用结构；实际效果需 --dynamic 验证\n[FAIL] C-05: api.py:127 SQL f-string\n[PASS] 接口: 缺失接口=[]；重复路由=False；搜索顺序=正确\n[PASS] 启动: 数据库引擎和建表入口存在；真实导入由动态测试检查\n[FAIL] C-06: 请求字段通过 ItemFields 继承复用；ORM 与 DTO 职责独立\n静态结构：2/7\n",
+      "stderr": "",
+      "expected_exit_code": 1
+    },
+    "v2-static-gates": {
+      "command": [
+        "C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Scripts\\python.exe",
+        "tools/gates.py",
+        "v2"
+      ],
+      "exit_code": 0,
+      "stdout": "== v2 静态门禁 ==\n[PASS] C-01: 多余=[]；缺少=[]\n[PASS] C-03: 合法边集合准确；存在调用点（行为由动态测试验证）\n[PASS] C-02/C-04: 属性及传播调用结构；实际效果需 --dynamic 验证\n[PASS] C-05: 未发现受检拼接模式；不替代全面安全审计\n[PASS] 接口: 缺失接口=[]；重复路由=False；搜索顺序=正确\n[PASS] 启动: 数据库引擎和建表入口存在；真实导入由动态测试检查\n[PASS] C-06: 请求字段通过 ItemFields 继承复用；ORM 与 DTO 职责独立\n静态结构：7/7\n",
+      "stderr": "",
+      "expected_exit_code": 0
+    },
+    "v3-static-gates": {
+      "command": [
+        "C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Scripts\\python.exe",
+        "tools/gates.py",
+        "v3"
+      ],
+      "exit_code": 0,
+      "stdout": "== v3 静态门禁 ==\n[PASS] C-01: 多余=[]；缺少=[]\n[PASS] C-03: 合法边集合准确；存在调用点（行为由动态测试验证）\n[PASS] C-02/C-04: 属性及传播调用结构；实际效果需 --dynamic 验证\n[PASS] C-05: 未发现受检拼接模式；不替代全面安全审计\n[PASS] 接口: 缺失接口=[]；重复路由=False；搜索顺序=正确\n[PASS] 启动: 数据库引擎和建表入口存在；真实导入由动态测试检查\n[PASS] C-06: 请求字段通过 ItemFields 继承复用；ORM 与 DTO 职责独立\n静态结构：7/7\n",
+      "stderr": "",
+      "expected_exit_code": 0
+    },
+    "orchestrator-help": {
+      "command": [
+        "C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Scripts\\python.exe",
+        "orchestrator.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "stdout": "usage: orchestrator.py [-h] --stage {v1,critique,constraints,v2,v3,all}\n                       [--run-dir RUN_DIR]\n\noptions:\n  -h, --help            show this help message and exit\n  --stage {v1,critique,constraints,v2,v3,all}\n  --run-dir RUN_DIR\n",
+      "stderr": "",
+      "expected_exit_code": 0
+    }
+  }
+}

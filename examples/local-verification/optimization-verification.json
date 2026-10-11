@@ -1,0 +1,297 @@
+{
+  "date": "2026-10-10",
+  "scope": "本地动态验证；未调用LLM API",
+  "checks": {
+    "v3-all": {
+      "command": [
+        "C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests",
+        "-q",
+        "--rms-version",
+        "v3",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 88%]\n.........                                                                [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n81 passed, 1 warning in 10.25s\n",
+      "stderr": ""
+    },
+    "v2-api": {
+      "command": [
+        "C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "tests/test_contract.py",
+        "-q",
+        "--rms-version",
+        "v2",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "stdout": ".................................................................        [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n65 passed, 1 warning in 9.11s\n",
+      "stderr": ""
+    },
+    "v2-gates": {
+      "command": [
+        "C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Scripts\\python.exe",
+        "tools/gates.py",
+        "v2"
+      ],
+      "exit_code": 0,
+      "stdout": "== v2 静态门禁 ==\n[PASS] C-01: 多余=[]；缺少=[]\n[PASS] C-03: 合法边集合准确；存在调用点（行为由动态测试验证）\n[PASS] C-02/C-04: 属性及传播调用结构；实际效果需 --dynamic 验证\n[PASS] C-05: 未发现受检拼接模式；不替代全面安全审计\n[PASS] 接口: 缺失接口=[]；重复路由=False；搜索顺序=正确\n[PASS] 启动: 数据库引擎和建表入口存在；真实导入由动态测试检查\n[PASS] C-06: 请求字段通过 ItemFields 继承复用；ORM 与 DTO 职责独立\n静态结构：7/7\n",
+      "stderr": ""
+    },
+    "v3-gates": {
+      "command": [
+        "C:\\Users\\ThinkPad\\Desktop\\胡淳启-SSAD第二次作业\\作业2.2\\.venv\\Scripts\\python.exe",
+        "tools/gates.py",
+        "v3"
+      ],
+      "exit_code": 0,
+      "stdout": "== v3 静态门禁 ==\n[PASS] C-01: 多余=[]；缺少=[]\n[PASS] C-03: 合法边集合准确；存在调用点（行为由动态测试验证）\n[PASS] C-02/C-04: 属性及传播调用结构；实际效果需 --dynamic 验证\n[PASS] C-05: 未发现受检拼接模式；不替代全面安全审计\n[PASS] 接口: 缺失接口=[]；重复路由=False；搜索顺序=正确\n[PASS] 启动: 数据库引擎和建表入口存在；真实导入由动态测试检查\n[PASS] C-06: 请求字段通过 ItemFields 继承复用；ORM 与 DTO 职责独立\n静态结构：7/7\n",
+      "stderr": ""
+    }
+  },
+  "live_http": {
+    "passed": true,
+    "server": "uvicorn",
+    "database": "独立演示数据库，不改用户数据",
+    "swagger": true,
+    "restart_persistence": true,
+    "steps": [
+      {
+        "method": "POST",
+        "path": "/projects",
+        "body": {
+          "name": "课程演示"
+        },
+        "status": 200,
+        "response": {
+          "project_id": 1
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/item-types",
+        "body": {
+          "project_id": 1,
+          "name": "系统需求"
+        },
+        "status": 200,
+        "response": {
+          "item_type_id": 1
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/item-types",
+        "body": {
+          "project_id": 1,
+          "name": "测试用例"
+        },
+        "status": 200,
+        "response": {
+          "item_type_id": 2
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/item-types/1/attributes",
+        "body": {
+          "name": "验收度量",
+          "data_type": "text",
+          "required": true
+        },
+        "status": 200,
+        "response": {
+          "attr_id": 1
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/item-types/2/attributes",
+        "body": {
+          "name": "测试步骤",
+          "data_type": "text",
+          "required": true
+        },
+        "status": 200,
+        "response": {
+          "attr_id": 2
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/items",
+        "body": {
+          "project_id": 1,
+          "item_type_id": 1,
+          "title": "错误需求",
+          "custom_attrs": {}
+        },
+        "status": 400,
+        "response": {
+          "detail": "必填属性不能为空: 验收度量"
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/items",
+        "body": {
+          "project_id": 1,
+          "item_type_id": 1,
+          "title": "订单查询",
+          "custom_attrs": {
+            "验收度量": "响应时间小于3秒"
+          }
+        },
+        "status": 200,
+        "response": {
+          "item_id": 1
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/items",
+        "body": {
+          "project_id": 1,
+          "item_type_id": 2,
+          "title": "订单查询性能测试",
+          "custom_attrs": {
+            "测试步骤": "发起查询并记录响应时间"
+          }
+        },
+        "status": 200,
+        "response": {
+          "item_id": 2
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/relationships",
+        "body": {
+          "from_item_id": 1,
+          "to_item_id": 2,
+          "link_type": "verifies"
+        },
+        "status": 200,
+        "response": {
+          "rel_id": 1
+        }
+      },
+      {
+        "method": "PUT",
+        "path": "/items/1",
+        "body": {
+          "status": "verified"
+        },
+        "status": 400,
+        "response": {
+          "detail": "非法状态流转: draft -> verified"
+        }
+      },
+      {
+        "method": "PUT",
+        "path": "/items/1",
+        "body": {
+          "status": "reviewing"
+        },
+        "status": 200,
+        "response": {
+          "ok": true
+        }
+      },
+      {
+        "method": "PUT",
+        "path": "/items/1",
+        "body": {
+          "title": "订单查询修订"
+        },
+        "status": 200,
+        "response": {
+          "ok": true
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/items/2/trace",
+        "body": null,
+        "status": 200,
+        "response": {
+          "upstream": [
+            {
+              "rel_id": 1,
+              "item_id": 1,
+              "link_type": "verifies",
+              "suspect": true
+            }
+          ],
+          "downstream": []
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/relationships/1/clear-suspect",
+        "body": null,
+        "status": 200,
+        "response": {
+          "ok": true
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/items/2/trace",
+        "body": null,
+        "status": 200,
+        "response": {
+          "upstream": [
+            {
+              "rel_id": 1,
+              "item_id": 1,
+              "link_type": "verifies",
+              "suspect": false
+            }
+          ],
+          "downstream": []
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/items/1",
+        "body": null,
+        "status": 200,
+        "response": {
+          "item_id": 1,
+          "project_id": 1,
+          "item_type_id": 1,
+          "title": "订单查询修订",
+          "status": "reviewing",
+          "owner": null,
+          "custom_attrs": {
+            "验收度量": "响应时间小于3秒"
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/items/2/trace",
+        "body": null,
+        "status": 200,
+        "response": {
+          "upstream": [
+            {
+              "rel_id": 1,
+              "item_id": 1,
+              "link_type": "verifies",
+              "suspect": false
+            }
+          ],
+          "downstream": []
+        }
+      }
+    ]
+  }
+}

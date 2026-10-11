@@ -1,0 +1,301 @@
+{
+  "total": 49,
+  "passed": 49,
+  "failures": [],
+  "cases": [
+    {
+      "src": "draft",
+      "dst": "draft",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "draft",
+      "dst": "reviewing",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "draft",
+      "dst": "approved",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "draft",
+      "dst": "implemented",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "draft",
+      "dst": "verified",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "draft",
+      "dst": "deprecated",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "draft",
+      "dst": "unknown",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "reviewing",
+      "dst": "draft",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "reviewing",
+      "dst": "reviewing",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "reviewing",
+      "dst": "approved",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "reviewing",
+      "dst": "implemented",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "reviewing",
+      "dst": "verified",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "reviewing",
+      "dst": "deprecated",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "reviewing",
+      "dst": "unknown",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "approved",
+      "dst": "draft",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "approved",
+      "dst": "reviewing",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "approved",
+      "dst": "approved",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "approved",
+      "dst": "implemented",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "approved",
+      "dst": "verified",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "approved",
+      "dst": "deprecated",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "approved",
+      "dst": "unknown",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "implemented",
+      "dst": "draft",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "implemented",
+      "dst": "reviewing",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "implemented",
+      "dst": "approved",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "implemented",
+      "dst": "implemented",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "implemented",
+      "dst": "verified",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "implemented",
+      "dst": "deprecated",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "implemented",
+      "dst": "unknown",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "verified",
+      "dst": "draft",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "verified",
+      "dst": "reviewing",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "verified",
+      "dst": "approved",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "verified",
+      "dst": "implemented",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "verified",
+      "dst": "verified",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "verified",
+      "dst": "deprecated",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "verified",
+      "dst": "unknown",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "deprecated",
+      "dst": "draft",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "deprecated",
+      "dst": "reviewing",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "deprecated",
+      "dst": "approved",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "deprecated",
+      "dst": "implemented",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "deprecated",
+      "dst": "verified",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "deprecated",
+      "dst": "deprecated",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "src": "deprecated",
+      "dst": "unknown",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "unknown",
+      "dst": "draft",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "unknown",
+      "dst": "reviewing",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "unknown",
+      "dst": "approved",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "unknown",
+      "dst": "implemented",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "unknown",
+      "dst": "verified",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "unknown",
+      "dst": "deprecated",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "src": "unknown",
+      "dst": "unknown",
+      "expected": false,
+      "actual": false
+    }
+  ]
+}

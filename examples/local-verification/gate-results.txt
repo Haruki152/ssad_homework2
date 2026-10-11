@@ -1,0 +1,30 @@
+== 门禁检查：v1 ==
+   受检文件：api.py, models.py, service.py
+
+  [FAIL] C-01       元模型不可写死          models.py: item 表含越界字段 ['acceptance', 'priority', 'rationale', 'source', 'stability']
+  [FAIL] C-03       状态机受控且接入         未找到状态流转表（仅有状态枚举，无合法边定义）
+  [FAIL] C-02/C-04  规则必须接入调用点        C-02 定义了校验函数但无调用点；C-04 未实现可疑标记传播
+  [FAIL] C-05       禁止拼接 SQL         api.py:160 f-string 内含 SQL 关键字
+
+  结果：0/4 通过
+
+== 门禁检查：v2 ==
+   受检文件：api.py, models.py, service.py
+
+  [PASS] C-01       元模型不可写死          models.py: 字段集合符合白名单（7 列）
+  [PASS] C-03       状态机受控且接入         6 状态 / 10 条合法边，且已接入
+  [PASS] C-02/C-04  规则必须接入调用点        C-02 / C-04 均已实现且接入调用点
+  [PASS] C-05       禁止拼接 SQL         未发现以拼接方式构造 SQL
+
+  结果：4/4 通过
+
+== 门禁检查：v3 ==
+   受检文件：api.py, domain.py, models.py, repository.py, rules.py, service.py
+
+  [PASS] C-01       元模型不可写死          models.py: 字段集合符合白名单（7 列）
+  [PASS] C-03       状态机受控且接入         6 状态 / 10 条合法边，且已接入
+  [PASS] C-02/C-04  规则必须接入调用点        C-02 / C-04 均已实现且接入调用点
+  [PASS] C-05       禁止拼接 SQL         未发现以拼接方式构造 SQL
+
+  结果：4/4 通过
+

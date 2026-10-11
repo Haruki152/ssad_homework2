@@ -1,0 +1,73 @@
+{
+  "result": "passed",
+  "scope": "真实 localhost HTTP、uvicorn 启动、Swagger 页面、核心业务链、重启后的持久化",
+  "uses_demo_database": false,
+  "api_paid_calls": false,
+  "events": [
+    {
+      "path": "/openapi.json",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/docs",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/projects",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/item-types",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/item-types/1/attributes",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/items",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/items",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/relationships",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/items/1",
+      "method": "PUT",
+      "status": 200
+    },
+    {
+      "path": "/items/2/trace",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/openapi.json",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/items/1",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/items/2/trace",
+      "method": "GET",
+      "status": 200
+    }
+  ]
+}

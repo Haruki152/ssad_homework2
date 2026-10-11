@@ -1,0 +1,242 @@
+{
+  "scope": "真实本地HTTP演示；不调用LLM API",
+  "live_http": {
+    "passed": true,
+    "server": "uvicorn",
+    "database": "独立演示数据库，不改用户数据",
+    "swagger": true,
+    "restart_persistence": true,
+    "steps": [
+      {
+        "method": "POST",
+        "path": "/projects",
+        "body": {
+          "name": "课程演示"
+        },
+        "status": 200,
+        "response": {
+          "project_id": 1
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/item-types",
+        "body": {
+          "project_id": 1,
+          "name": "系统需求"
+        },
+        "status": 200,
+        "response": {
+          "item_type_id": 1
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/item-types",
+        "body": {
+          "project_id": 1,
+          "name": "测试用例"
+        },
+        "status": 200,
+        "response": {
+          "item_type_id": 2
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/item-types/1/attributes",
+        "body": {
+          "name": "验收度量",
+          "data_type": "text",
+          "required": true
+        },
+        "status": 200,
+        "response": {
+          "attr_id": 1
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/item-types/2/attributes",
+        "body": {
+          "name": "测试步骤",
+          "data_type": "text",
+          "required": true
+        },
+        "status": 200,
+        "response": {
+          "attr_id": 2
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/items",
+        "body": {
+          "project_id": 1,
+          "item_type_id": 1,
+          "title": "错误需求",
+          "custom_attrs": {}
+        },
+        "status": 400,
+        "response": {
+          "detail": "必填属性不能为空: 验收度量"
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/items",
+        "body": {
+          "project_id": 1,
+          "item_type_id": 1,
+          "title": "订单查询",
+          "custom_attrs": {
+            "验收度量": "响应时间小于3秒"
+          }
+        },
+        "status": 200,
+        "response": {
+          "item_id": 1
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/items",
+        "body": {
+          "project_id": 1,
+          "item_type_id": 2,
+          "title": "订单查询性能测试",
+          "custom_attrs": {
+            "测试步骤": "发起查询并记录响应时间"
+          }
+        },
+        "status": 200,
+        "response": {
+          "item_id": 2
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/relationships",
+        "body": {
+          "from_item_id": 1,
+          "to_item_id": 2,
+          "link_type": "verifies"
+        },
+        "status": 200,
+        "response": {
+          "rel_id": 1
+        }
+      },
+      {
+        "method": "PUT",
+        "path": "/items/1",
+        "body": {
+          "status": "verified"
+        },
+        "status": 400,
+        "response": {
+          "detail": "非法状态流转: draft -> verified"
+        }
+      },
+      {
+        "method": "PUT",
+        "path": "/items/1",
+        "body": {
+          "status": "reviewing"
+        },
+        "status": 200,
+        "response": {
+          "ok": true
+        }
+      },
+      {
+        "method": "PUT",
+        "path": "/items/1",
+        "body": {
+          "title": "订单查询修订"
+        },
+        "status": 200,
+        "response": {
+          "ok": true
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/items/2/trace",
+        "body": null,
+        "status": 200,
+        "response": {
+          "upstream": [
+            {
+              "rel_id": 1,
+              "item_id": 1,
+              "link_type": "verifies",
+              "suspect": true
+            }
+          ],
+          "downstream": []
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/relationships/1/clear-suspect",
+        "body": null,
+        "status": 200,
+        "response": {
+          "ok": true
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/items/2/trace",
+        "body": null,
+        "status": 200,
+        "response": {
+          "upstream": [
+            {
+              "rel_id": 1,
+              "item_id": 1,
+              "link_type": "verifies",
+              "suspect": false
+            }
+          ],
+          "downstream": []
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/items/1",
+        "body": null,
+        "status": 200,
+        "response": {
+          "item_id": 1,
+          "project_id": 1,
+          "item_type_id": 1,
+          "title": "订单查询修订",
+          "status": "reviewing",
+          "owner": null,
+          "custom_attrs": {
+            "验收度量": "响应时间小于3秒"
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "path": "/items/2/trace",
+        "body": null,
+        "status": 200,
+        "response": {
+          "upstream": [
+            {
+              "rel_id": 1,
+              "item_id": 1,
+              "link_type": "verifies",
+              "suspect": false
+            }
+          ],
+          "downstream": []
+        }
+      }
+    ]
+  }
+}

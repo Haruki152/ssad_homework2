@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-10T15:36:22.289791+08:00",
+  "provider": "deepseek",
+  "requested_family": "v4-flash",
+  "api_model": "deepseek-flash",
+  "scope": "真实Backend→本地检查→Critic小模块实验；未运行完整v1/v2/v3生成流水线",
+  "thinking": "disabled",
+  "output_caps": {
+    "backend": 700,
+    "critic": 300
+  },
+  "automatic_retries": 0,
+  "resumed_from_saved_response": true,
+  "test_total": 49,
+  "test_passed": 49,
+  "critic_verdict": "pass",
+  "source_sha256": "a343f5b78ed6f5868923284f7eae4b50bafced62937497512e5b3febcf16ca1c",
+  "completed": true,
+  "calls": [
+    {
+      "agent": "backend",
+      "actual_model": "deepseek-flash",
+      "usage": {
+        "prompt_tokens": 148,
+        "completion_tokens": 166,
+        "total_tokens": 314,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 148
+      },
+      "elapsed_seconds": 1.172
+    },
+    {
+      "agent": "critic",
+      "actual_model": "deepseek-flash",
+      "usage": {
+        "prompt_tokens": 322,
+        "completion_tokens": 47,
+        "total_tokens": 369,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 322
+      },
+      "elapsed_seconds": 1.297
+    }
+  ],
+  "total_tokens": 683,
+  "prompt_tokens": 470,
+  "completion_tokens": 213
+}

@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-10T15:35:43.490272+08:00",
+  "provider": "deepseek",
+  "requested_family": "v4-flash",
+  "api_model": "deepseek-flash",
+  "scope": "真实Backend→本地检查→Critic小模块实验；未运行完整v1/v2/v3生成流水线",
+  "thinking": "disabled",
+  "output_caps": {
+    "backend": 700,
+    "critic": 300
+  },
+  "automatic_retries": 0,
+  "completed": false,
+  "error_type": "NameError",
+  "calls": [
+    {
+      "agent": "backend",
+      "actual_model": "deepseek-flash",
+      "usage": {
+        "prompt_tokens": 148,
+        "completion_tokens": 166,
+        "total_tokens": 314,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 148
+      },
+      "elapsed_seconds": 1.172
+    }
+  ],
+  "total_tokens": 314,
+  "prompt_tokens": 148,
+  "completion_tokens": 166
+}

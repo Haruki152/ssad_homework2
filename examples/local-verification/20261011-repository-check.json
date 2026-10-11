@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-11",
+  "scope": "整理后的仓库本地验证；没有调用模型API",
+  "checks": {
+    "v3-all": {
+      "command": "python -m pytest tests --rms-version v3 --rms-root . -q -p no:cacheprovider",
+      "passed": 84,
+      "exit_code": 0
+    },
+    "v2-api": {
+      "command": "python -m pytest tests/test_contract.py --rms-version v2 --rms-root . -q -p no:cacheprovider",
+      "passed": 65,
+      "exit_code": 0
+    },
+    "v3-static": {
+      "command": "python tools/gates.py v3",
+      "passed": 7,
+      "total": 7,
+      "exit_code": 0
+    },
+    "v2-static": {
+      "command": "python tools/gates.py v2",
+      "passed": 7,
+      "total": 7,
+      "exit_code": 0
+    },
+    "live-http": {
+      "command": "python tools/demo.py",
+      "exit_code": 0,
+      "record": "20261011-live-demo.json"
+    }
+  },
+  "warnings": [
+    "测试环境发出Starlette测试客户端弃用提示，测试仍全部通过。"
+  ],
+  "changes": [
+    "启动脚本改名为run.ps1，提示指向README.md。",
+    "编排程序的运行目录错误提示适配仓库名称。",
+    "演示脚本仅在Windows上设置CREATE_NO_WINDOW。",
+    "现有记录归入examples，运行时输出仍使用artifacts或runs。"
+  ]
+}
